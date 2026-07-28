@@ -4,7 +4,7 @@ export default function DienstPage({ dienst }) {
   return (
     <article className="blog-post dienst-page">
       <div className="container">
-        <a href="#top" className="blog-post-back">
+        <a href="/" className="blog-post-back">
           <span aria-hidden="true">←</span> Terug naar home
         </a>
         <header className="blog-post-header">

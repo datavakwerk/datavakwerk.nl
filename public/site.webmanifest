@@ -1,0 +1,14 @@
+{
+  "name": "Datavakwerk",
+  "short_name": "Datavakwerk",
+  "description": "Freelance business- en data-analist voor de publieke sector.",
+  "lang": "nl-NL",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0a1f44",
+  "theme_color": "#1d4ed8",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

@@ -91,7 +91,7 @@ export default function Products() {
         <div className="products-grid">
           {SERVICES.map((p, i) => (
             <a
-              href={`#/diensten/${p.slug}`}
+              href={`/diensten/${p.slug}`}
               className="product-card reveal"
               style={{ '--reveal-delay': `${i * 110}ms` }}
               key={p.title}

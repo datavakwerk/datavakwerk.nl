@@ -3,7 +3,7 @@ export default function BlogPost({ post }) {
   return (
     <article className="blog-post">
       <div className="container blog-post-inner">
-        <a href="#/blog" className="blog-post-back">
+        <a href="/blog" className="blog-post-back">
           <span aria-hidden="true">←</span> Terug naar het overzicht
         </a>
         <header className="blog-post-header">

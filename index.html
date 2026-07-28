@@ -3,14 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Datavakwerk — Freelance business & data analist voor de publieke sector</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- De fonts staan lokaal in /fonts; deze twee zijn zichtbaar bij de eerste
+         schermvulling en worden daarom vooraf geladen. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/inter-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%231d4ed8'/%3E%3Crect x='9' y='18' width='3.5' height='6' rx='1' fill='%2393c5fd'/%3E%3Crect x='14.25' y='13' width='3.5' height='11' rx='1' fill='%2393c5fd'/%3E%3Crect x='19.5' y='9' width='3.5' height='15' rx='1' fill='%2393c5fd'/%3E%3Ccircle cx='21.25' cy='6' r='2' fill='%23ffe099'/%3E%3C/svg%3E" />
+    <link
+      rel="preload"
+      href="/fonts/space-grotesk-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#1d4ed8" />
+
+    <!--seo-start-->
+    <title>Datavakwerk — freelance business- &amp; data-analist voor de publieke sector</title>
+    <meta
+      name="description"
+      content="Zelfstandig business- en data-analist voor de (rijks)overheid. Stuurinformatie die klopt, procesanalyse op de werkvloer en businesscases waarin elk getal herleidbaar is."
+    />
+    <link rel="canonical" href="https://datavakwerk.nl/" />
+    <!--/seo-end-->
+
+    <!-- Zonder JavaScript draait de scroll-animatie niet; laat de inhoud dan
+         gewoon staan in plaats van op opacity 0. -->
+    <noscript>
+      <style>
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
     <div id="root"></div>

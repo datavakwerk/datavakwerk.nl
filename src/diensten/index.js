@@ -1,4 +1,4 @@
-// Inhoud van de dienstpagina's (#/diensten/<slug>).
+// Inhoud van de dienstpagina's (/diensten/<slug>).
 // Elke sectie heeft een titel met paragrafen en/of een lijst van punten.
 
 export const diensten = [

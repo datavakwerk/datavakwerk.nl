@@ -5,19 +5,19 @@ const COLS = [
   {
     h: 'Diensten',
     links: [
-      'Stuur- & managementinformatie',
-      'Procesanalyse & herontwerp',
-      'Businesscases & advies',
-      'Interim informatieanalyse',
-      'Advies & audits',
-    ].map((label) => ({ label, href: '#diensten' })),
+      { label: 'Stuur- & managementinformatie', href: '/diensten/stuurinformatie' },
+      { label: 'Procesanalyse & herontwerp', href: '/diensten/procesanalyse' },
+      { label: 'Businesscases & advies', href: '/diensten/businesscases' },
+      { label: 'Interim informatieanalyse', href: '/#diensten' },
+      { label: 'Advies & audits', href: '/#diensten' },
+    ],
   },
   {
     h: 'Kennis',
     links: [
-      { label: 'Blog', href: '#blog' },
-      { label: 'Projecten', href: '#projecten' },
-      { label: 'Werkwijze', href: '#werkwijze' },
+      { label: 'Blog', href: '/blog' },
+      { label: 'Projecten', href: '/#projecten' },
+      { label: 'Werkwijze', href: '/#werkwijze' },
     ],
   },
   {
@@ -37,7 +37,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <a href="#top" className="nav-logo">
+            <a href="/" className="nav-logo">
               <Logo />
               Datavakwerk
             </a>

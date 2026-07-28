@@ -1,3 +1,5 @@
+@import './fonts.css';
+
 /* ============ Design tokens ============ */
 :root {
   --blue-900: #0a1f44;
@@ -1736,7 +1738,7 @@ h3 {
   margin-top: 40px;
 }
 
-/* Overzichtspagina met alle blogposts (#/blog) */
+/* Overzichtspagina met alle blogposts (/blog) */
 .blog-index {
   padding: 150px 0 90px;
   min-height: 100vh;
@@ -1972,7 +1974,7 @@ h3 {
   color: var(--blue-900);
 }
 
-/* ============ Dienst-pagina's (#/diensten/<slug>) ============ */
+/* ============ Dienst-pagina's (/diensten/<slug>) ============ */
 .dienst-lead {
   font-size: 18px;
   line-height: 1.6;

@@ -13,7 +13,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build:client && npm run build:ssr && npm run prerender",
+    "build:client": "vite build",
+    "build:ssr": "vite build --ssr src/entry-server.jsx --outDir dist-ssr",
+    "prerender": "node scripts/prerender.mjs",
+    "verify": "node scripts/verify-build.mjs",
+    "fonts": "node scripts/fetch-fonts.mjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },

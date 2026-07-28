@@ -285,7 +285,7 @@ export function BlogCard({ post, index }) {
   const Card = post.slug ? 'a' : 'div'
   return (
     <Card
-      {...(post.slug ? { href: `#/blog/${post.slug}` } : {})}
+      {...(post.slug ? { href: `/blog/${post.slug}` } : {})}
       className="blog-card reveal"
       style={{ '--reveal-delay': `${index * 100}ms` }}
     >
@@ -316,7 +316,7 @@ export default function Blog() {
           ))}
         </div>
         <div className="blog-more reveal" style={{ '--reveal-delay': '300ms' }}>
-          <a href="#/blog" className="btn btn-ghost">
+          <a href="/blog" className="btn btn-ghost">
             Bekijk alle blogposts <span aria-hidden="true">→</span>
           </a>
         </div>

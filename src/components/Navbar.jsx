@@ -2,7 +2,15 @@ import { useEffect, useState } from 'react'
 import Logo from './Logo.jsx'
 import { LINKEDIN_URL, MAILTO_KENNISMAKING } from '../config.js'
 
-const LINKS = ['Diensten', 'Projecten', 'Werkwijze', 'Blog', 'Over mij']
+// Secties staan op de homepage, dus verwijs met /#anker — dan werken ze ook
+// vanaf een blog- of dienstpagina. Blog krijgt zijn eigen indexeerbare pagina.
+const LINKS = [
+  { label: 'Diensten', href: '/#diensten' },
+  { label: 'Projecten', href: '/#projecten' },
+  { label: 'Werkwijze', href: '/#werkwijze' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Over mij', href: '/#over-mij' },
+]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -17,14 +25,14 @@ export default function Navbar() {
   return (
     <header className={`nav ${scrolled ? 'scrolled' : ''}`} id="top">
       <div className="container nav-inner">
-        <a href="#top" className="nav-logo">
+        <a href="/" className="nav-logo">
           <Logo />
           Datavakwerk
         </a>
         <nav className="nav-links">
           {LINKS.map((l) => (
-            <a key={l} href={`#${l.toLowerCase().replace(' ', '-')}`}>
-              {l}
+            <a key={l.label} href={l.href}>
+              {l.label}
             </a>
           ))}
         </nav>

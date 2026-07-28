@@ -6,7 +6,7 @@ export default function BlogIndex() {
   return (
     <section className="blog blog-index" ref={ref}>
       <div className="container">
-        <a href="#top" className="blog-post-back">
+        <a href="/" className="blog-post-back">
           <span aria-hidden="true">←</span> Terug naar home
         </a>
         <div className="reveal">

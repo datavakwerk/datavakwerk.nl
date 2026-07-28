@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    name: Lint en build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -22,3 +23,74 @@ jobs:
       - run: npm run lint
 
       - run: npm run build
+
+      # Bewaakt dat de prerender echt inhoud oplevert en dat elke route eigen
+      # SEO-tags houdt.
+      - run: npm run verify
+
+  container:
+    name: Container en routes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Image bouwen
+        run: docker build -t datavakwerk:ci .
+
+      - name: nginx-configuratie controleren
+        run: docker run --rm datavakwerk:ci nginx -t
+
+      - name: Container starten
+        run: |
+          docker run -d --name site -p 8080:80 datavakwerk:ci
+          for i in $(seq 1 30); do
+            if curl -sf -o /dev/null http://127.0.0.1:8080/; then break; fi
+            sleep 1
+          done
+
+      - name: Routes controleren
+        run: |
+          set -e
+          fail=0
+          check() {
+            code=$(curl -s -o /dev/null -w '%{http_code}' "http://127.0.0.1:8080$1")
+            if [ "$code" != "$2" ]; then
+              echo "FOUT $1 gaf $code, verwacht $2"
+              fail=1
+            else
+              echo "OK   $1 -> $code"
+            fi
+          }
+          check /                                        200
+          check /blog                                    200
+          check /blog/open-data-warehouse-met-dbt        200
+          check /blog/bezwaarproces-in-cijfers           200
+          check /diensten/stuurinformatie                200
+          check /diensten/procesanalyse                  200
+          check /diensten/businesscases                  200
+          check /robots.txt                              200
+          check /sitemap.xml                             200
+          check /og.jpg                                  200
+          check /fonts/inter-latin.woff2                 200
+          # Onbekende URL's moeten een echte 404 geven, geen soft-404.
+          check /bestaat-niet                            404
+          check /blog/bestaat-niet                       404
+          exit $fail
+
+      - name: Inhoud van een blogpagina controleren
+        run: |
+          set -e
+          html=$(curl -s http://127.0.0.1:8080/blog/open-data-warehouse-met-dbt)
+          echo "$html" | grep -q "Kimball-sterschema" || { echo "artikelinhoud ontbreekt"; exit 1; }
+          echo "$html" | grep -q 'rel="canonical" href="https://datavakwerk.nl/blog/open-data-warehouse-met-dbt"' \
+            || { echo "canonical ontbreekt of klopt niet"; exit 1; }
+          echo "$html" | grep -q 'application/ld+json' || { echo "JSON-LD ontbreekt"; exit 1; }
+          echo "OK   inhoud, canonical en JSON-LD aanwezig"
+
+      - name: Logs bij falen
+        if: failure()
+        run: docker logs site
+
+      - name: Opruimen
+        if: always()
+        run: docker rm -f site || true

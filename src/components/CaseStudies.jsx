@@ -114,7 +114,7 @@ export default function CaseStudies() {
                 ))}
               </div>
               <div className="case-links">
-                <a href={`#/blog/${p.slug}`}>
+                <a href={`/blog/${p.slug}`}>
                   Lees de blogpost <span aria-hidden="true">→</span>
                 </a>
                 {GITHUB_URL && (
