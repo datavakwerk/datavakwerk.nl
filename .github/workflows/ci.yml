@@ -75,6 +75,10 @@ jobs:
           # Onbekende URL's moeten een echte 404 geven, geen soft-404.
           check /bestaat-niet                            404
           check /blog/bestaat-niet                       404
+          # De canonical staat zonder slash, dus /blog/ hoort door te sturen
+          # naar /blog — en /blog zelf mag juist niet doorsturen.
+          check /blog/                                   301
+          check /diensten/stuurinformatie/               301
           exit $fail
 
       - name: Inhoud van een blogpagina controleren
