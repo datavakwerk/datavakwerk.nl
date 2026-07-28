@@ -1,0 +1,75 @@
+export const meta = {
+  slug: 'requirements-engineering-voor-dataproducten',
+  tag: 'Analyse',
+  title: 'Requirements voor dataproducten: van "wij willen een dashboard" naar wat er echt nodig is',
+  date: '18 jul 2026',
+  excerpt:
+    'De vraag is bijna nooit het requirement. Hoe je van een dashboardwens komt tot de beslissing erachter, de definities eronder en requirements waar een data engineer mee kan bouwen.',
+}
+
+"Wij willen een dashboard." Zo begint het bijna altijd — en wie die zin als
+requirement behandelt, levert over drie maanden een dashboard op dat niemand
+gebruikt. De vraag is namelijk zelden het requirement. Het is een symptoom
+van een informatiebehoefte, en die moet je eerst boven tafel krijgen.
+
+## Begin bij de beslissing, niet bij de wens
+
+Mijn eerste vraag is nooit "wat moet erop?" maar: **welke beslissing moet
+hiermee genomen worden, door wie, en hoe vaak?** Een teamleider die wekelijks
+capaciteit herverdeelt heeft iets anders nodig dan een directeur die per
+kwartaal verantwoording aflegt — ook als beiden "inzicht in doorlooptijden"
+vragen.
+
+Van daaruit werk ik terug:
+
+1. **De beslissing.** Wat gaat er anders als dit er is? Als het antwoord
+   "niets, maar het is handig om te weten" is, hoort het niet in versie één.
+2. **De vraag achter de vraag.** "Kunnen jullie een export maken?" betekent
+   meestal: het huidige product beantwoordt mijn vraag niet en ik ga zelf
+   knutselen. De export is niet het requirement; de onbeantwoorde vraag is het.
+3. **De definitie.** Wat is "afgehandeld", wat telt als "zaak", vanaf welk
+   moment loopt de doorlooptijd? Elk woord waar twee afdelingen iets anders
+   onder verstaan, wordt later een cijferdiscussie in het MT.
+4. **De bron.** Wordt dit ergens betrouwbaar geregistreerd? Zo nee, dan is
+   het requirement geen dashboardwens maar een registratie-afspraak — en dat
+   gesprek voer je beter vóór de bouw dan erna.
+
+## Van gesprek naar iets waar een engineer mee kan bouwen
+
+Een informatiebehoefte is pas een requirement als iemand anders er zonder jou
+mee verder kan. Wat ik oplever aan het datateam:
+
+- **Een informatiemodel**: de entiteiten en relaties in gewone taal — zaak,
+  processtap, behandelaar, termijn — voordat er over tabellen wordt gepraat.
+- **Requirements per dataset**: welke velden, welke granulariteit ("één rij
+  per statuswissel"), welke historie, welke verversing, welke kwaliteitseisen.
+- **KPI-definities als contract**: berekening, bron, eigenaar en doelwaarde
+  per metric, vastgelegd in een KPI-woordenboek dat business én engineering
+  ondertekenen.
+- **Acceptatiecriteria die te toetsen zijn**: "de aansluiting met de
+  financiële administratie verschilt maximaal 0,5%" in plaats van "de cijfers
+  moeten kloppen".
+
+Dat is de brugfunctie: de organisatie hoort haar eigen behoefte terug in
+gewone taal, en de engineer krijgt iets waar hij op kan bouwen zonder elke
+dag te moeten navragen wat er bedoeld werd.
+
+## Requirements zijn een proces, geen document
+
+Het klassieke beeld — eerst alle requirements ophalen, dan bouwen — werkt
+voor dataproducten aantoonbaar slecht: mensen weten pas wat ze nodig hebben
+als ze iets zien. Daarom combineer ik een dunne, stevige basis (definities,
+informatiemodel, bronafspraken — daar wél streng op zijn) met korte
+bouwcycli waarin het product de vragen scherper maakt.
+
+> Hoe eerder een requirement schuurt met de werkelijkheid, hoe goedkoper de
+> correctie. Een definitiefout kost in week twee een gesprek en in maand
+> zes een herbouw.
+
+En de requirements die sneuvelen? Die schrijf ik ook op. Een lijst met "dit
+doen we bewust niet, en daarom niet" voorkomt dat dezelfde discussie elk
+kwartaal terugkomt.
+
+*Ligt er bij jouw organisatie een dashboardwens die maar niet concreet wordt?
+[Plan een kennismaking](mailto:datavakwerk@ruudjuffermans.nl) — dan help ik
+de vraag achter de vraag boven tafel te krijgen.*

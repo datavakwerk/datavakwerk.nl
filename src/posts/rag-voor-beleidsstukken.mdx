@@ -1,0 +1,88 @@
+import { GITHUB_URL } from '../config.js'
+
+export const meta = {
+  slug: 'rag-voor-beleidsstukken',
+  tag: 'Project',
+  title: 'Een RAG-assistent voor beleidsstukken die alleen antwoordt mét bron',
+  date: '25 jul 2026',
+  excerpt:
+    'Vragen stellen aan openbare beleidsstukken en antwoord krijgen met bronvermelding — of een eerlijk "dat staat niet in de stukken". Over de pijplijn, en vooral over hoe je bewijst dat hij te vertrouwen is.',
+}
+
+Overheden zitten op bergen openbare documenten — raadsstukken, beleidsnota's,
+besluiten — die formeel vindbaar zijn en praktisch onvindbaar. De belofte van
+een taalmodel daarbovenop is duidelijk; het risico ook: een assistent die
+overtuigend antwoordt met dingen die nergens staan.
+
+**`beleidsstukken-rag`** is mijn antwoord op die spanning: een
+vraag-antwoordsysteem over openbare beleidsstukken dat twee dingen altijd doet.
+Het citeert zijn bronnen bij elk antwoord, en het zegt eerlijk *"dat staat
+niet in de stukken"* wanneer de documenten het antwoord niet bevatten.
+
+## De pijplijn
+
+De corpus bestaat uit openbare raads- en beleidsdocumenten, vastgelegd als
+vaste set zodat het project reproduceerbaar blijft. Daarboven:
+
+- **Verwerking.** Documenten worden structuurbewust opgeknipt — beleidsstukken
+  hebben hoofdstukken, artikelen en bijlagen, en een knip op de verkeerde
+  plek maakt een passage betekenisloos.
+- **Zoeken.** Passages worden als embeddings opgeslagen in een vectordatabase
+  (Chroma), zodat er op betekenis gezocht wordt in plaats van op letterlijke
+  woorden.
+- **Redeneren.** Een LangGraph-graaf stuurt de stappen: zoek passages →
+  beoordeel of ze de vraag echt raken → formuleer een antwoord met verwijzing
+  per bewering → of concludeer dat het antwoord er niet is. Die laatste tak is
+  geen foutafhandeling maar een volwaardige uitkomst.
+
+Een kleine chatinterface (Streamlit) toont naast elk antwoord de passages
+waarop het steunt, zodat een gebruiker het antwoord kan controleren in plaats
+van moeten geloven.
+
+## Het echte werk: bewijzen dat het klopt
+
+Een RAG-demo bouwen is een middag werk. Het onderscheid zit in de vraag die
+elke opdrachtgever zou moeten stellen: *hoe weet je dat het klopt — en blijft
+kloppen?*
+
+Daarvoor bevat het project een **gouden set** van vraag-antwoordparen met de
+juiste bronpassages. Bij elke wijziging draait in CI een evaluatie (RAGAS) die
+meet of antwoorden trouw blijven aan de bron, of de juiste passages gevonden
+worden en of de assistent niet begint te fantaseren. Zakt een score, dan
+faalt de build — precies zoals een dbt-test een datamodel bewaakt.
+
+> Niet "het voelt goed in de demo", maar een getal dat bij elke wijziging
+> opnieuw wordt gemeten. Dat is het verschil tussen een experiment en iets
+> dat een organisatie durft te gebruiken.
+
+## Verantwoorde inzet is een ontwerpkeuze
+
+Bij het project hoort een notitie over verantwoorde inzet: waarom alleen
+openbare data, hoe bronvermelding en de faithfulness-toets hallucinaties
+beteugelen, wat de bekende beperkingen zijn, en wat er *extra* nodig zou zijn
+voor een echte overheidsuitrol — toegankelijkheid, logging, een DPIA. Wie AI
+in een uitvoeringsproces wil zetten, moet die vragen kunnen beantwoorden
+vóórdat de eerste gebruiker het systeem ziet.
+
+## Waarom dit project
+
+AI komt op elke bestuurstafel voorbij, en de vraag is zelden óf er iets kan,
+maar wat er verantwoord kan. Dit project laat beide kanten zien: de techniek
+om het te bouwen, en de discipline om aantoonbaar te maken dat het te
+vertrouwen is.
+
+{GITHUB_URL && (
+  <p>
+    <em>
+      De volledige code en de evaluatieresultaten staan op{' '}
+      <a href={`${GITHUB_URL}/beleidsstukken-rag`} target="_blank" rel="noreferrer">
+        GitHub
+      </a>
+      .
+    </em>
+  </p>
+)}
+
+*Denkt jouw organisatie na over AI op documenten of in een proces?
+[Plan een kennismaking](mailto:datavakwerk@ruudjuffermans.nl) — dan verkennen
+we samen wat kán en wat verstandig is.*

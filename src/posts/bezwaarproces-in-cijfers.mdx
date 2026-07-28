@@ -1,0 +1,87 @@
+import { GITHUB_URL } from '../config.js'
+
+export const meta = {
+  slug: 'bezwaarproces-in-cijfers',
+  tag: 'Project',
+  title: 'Van event-log naar businesscase: stuurinformatie voor het bezwaarproces',
+  date: '27 jul 2026',
+  excerpt:
+    'Eén proces, helemaal doorgerekend: van operationeel event-log via doorlooptijd-analyse naar een KPI-dashboard en een businesscase waarin elk getal reproduceerbaar is.',
+}
+
+"Van uitvoering naar sturing" is makkelijk gezegd. Dit project laat zien wat
+het betekent: **`bezwaarproces-stuurinformatie`**, één casus die de hele keten
+doorloopt — van de rauwe gebeurtenissen op de werkvloer tot een advies waar
+een directie op kan besluiten.
+
+De casus is een bezwaarproces, het soort proces dat bij veel
+uitvoeringsorganisaties onder druk staat: wettelijke termijnen, groeiende
+werkvoorraden, en stuurinformatie die achteraf vertelt dat het mis ging in
+plaats van vooraf waar het mis gáát.
+
+## Synthetisch, en waarom dat een keuze is
+
+De data is synthetisch: een generator (met vaste seed, dus reproduceerbaar)
+produceert honderdduizenden events voor bezwaarzaken — ontvangst, toewijzing,
+behandeling, horen, beslissing — met behandelaars, teams, uitkomsten en
+wettelijke termijnen. Echte bezwaardata hoort niet op GitHub; procesdata is
+al snel herleidbaar tot personen.
+
+De generator is daarmee zelf onderdeel van het verhaal: alle aannames over het
+proces staan erin als code, controleerbaar en aanpasbaar. Wie een aanname
+betwist, past hem aan en ziet wat er met de conclusies gebeurt.
+
+## De analyse: waar de tijd écht zit
+
+Met SQL en Python wordt het log ontleed zoals ik dat bij een echte opdracht
+doe: doorlooptijden per stap (P50 en P90, want gemiddelden verbergen precies
+de zaken waar het pijn doet), wachttijd versus behandeltijd,
+termijnoverschrijdingen, instroom tegenover capaciteit. Met process mining
+(PM4Py) komt daar het procesplaatje bij zoals het zich *werkelijk* voordoet in
+de data — inclusief de varianten en terugstromen die in geen enkele
+procesplaat staan.
+
+De uitkomst is steevast hetzelfde soort inzicht: het grootste deel van de
+doorlooptijd is wachttijd, en die concentreert zich op één of twee overdrachten.
+
+## Van analyse naar KPI's — met definities
+
+Het dashboard toont een handvol KPI's: doorlooptijd P50/P90, percentage binnen
+de wettelijke termijn, werkvoorraad en first-time-right. Belangrijker dan de
+visualisatie is de **definitietabel** ernaast: per KPI de meetregel, het
+aggregatieniveau en de doelwaarde. Cijferdiscussies gaan zelden over
+rekenfouten en bijna altijd over definities — dus die liggen vast.
+
+## De businesscase: elk getal herleidbaar
+
+Het sluitstuk is een businesscase zoals een beslisser hem moet kunnen wegen:
+twee of drie scenario's (triage automatiseren, capaciteit herverdelen, niets
+doen) met fte's, kosten, baten, terugverdientijd en risico's. Elk getal in het
+document komt uit een notebook dat in de repository staat — wie een bedrag
+wil controleren, kan de berekening naspelen.
+
+> Een businesscase waarvan de onderbouwing niet te controleren is, is geen
+> onderbouwing maar een mening met een tabel.
+
+## Waarom dit project
+
+Dit is het werk dat ik voor organisaties doe, in het klein en in de
+openbaarheid: meelopen (hier: het proces modelleren), meten wat er werkelijk
+gebeurt, vertalen naar KPI's die standhouden, en eindigen met een advies dat
+bestuur én werkvloer kunnen dragen.
+
+{GITHUB_URL && (
+  <p>
+    <em>
+      De volledige code, het dashboard en de businesscase staan op{' '}
+      <a href={`${GITHUB_URL}/bezwaarproces-stuurinformatie`} target="_blank" rel="noreferrer">
+        GitHub
+      </a>
+      .
+    </em>
+  </p>
+)}
+
+*Loopt er bij jouw organisatie een proces waar de cijfers achteraan hobbelen?
+[Plan een kennismaking](mailto:datavakwerk@ruudjuffermans.nl) — dan bespreken
+we hoe deze aanpak daar uitpakt.*
