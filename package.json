@@ -1,7 +1,15 @@
 {
-  "name": "zzp-business-analyse",
+  "name": "datavakwerk-nl",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.0.0",
+  "description": "Website van Datavakwerk — freelance business- en data-analist voor de publieke sector.",
+  "homepage": "https://datavakwerk.nl",
+  "license": "UNLICENSED",
+  "author": "Ruud Juffermans <datavakwerk@ruudjuffermans.nl>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/datavakwerk/datavakwerk.nl.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
