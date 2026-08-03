@@ -1974,6 +1974,58 @@ h3 {
   color: var(--blue-900);
 }
 
+/* Codeblokken in posts. Zelfde donkere paneel als de hero, maar zonder de
+   beam-animatie: in lopende tekst leidt dat af. */
+.blog-post-content pre {
+  margin: 28px 0;
+  padding: 20px 22px;
+  border-radius: var(--radius-md);
+  background: #101218;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.blog-post-content pre code {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--gray-300);
+  white-space: pre;
+  background: none;
+  padding: 0;
+  border: 0;
+}
+
+/* Losse code zonder taal is bij mij consoleoutput (tabellen van DuckDB);
+   die mag smaller zodat de kaders niet afbreken. */
+.blog-post-content pre code:not([class*="language-"]) {
+  font-size: 12.5px;
+  color: var(--gray-500);
+}
+
+.blog-post-content :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  color: var(--blue-900);
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 640px) {
+  .blog-post-content pre {
+    padding: 16px;
+    border-radius: var(--radius-sm);
+  }
+
+  .blog-post-content pre code {
+    font-size: 12px;
+  }
+}
+
 /* ============ Dienst-pagina's (/diensten/<slug>) ============ */
 .dienst-lead {
   font-size: 18px;

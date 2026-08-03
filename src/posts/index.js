@@ -4,8 +4,10 @@ import Warehouse, { meta as warehouseMeta } from './open-data-warehouse-met-dbt.
 import Rag, { meta as ragMeta } from './rag-voor-beleidsstukken.mdx'
 import Scrum, { meta as scrumMeta } from './scrum-in-de-publieke-sector.mdx'
 import Requirements, { meta as requirementsMeta } from './requirements-engineering-voor-dataproducten.mdx'
+import Feestdagen, { meta as feestdagenMeta } from './nederlandse-feestdagen-in-sql.mdx'
 
 export const posts = [
+  { ...feestdagenMeta, Component: Feestdagen },
   { ...bezwaarprocesMeta, Component: Bezwaarproces },
   { ...warehouseMeta, Component: Warehouse },
   { ...ragMeta, Component: Rag },
