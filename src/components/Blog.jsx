@@ -189,6 +189,13 @@ function ThumbArt({ variant }) {
 
 export const POSTS = [
   {
+    tag: 'Techniek',
+    title: 'Nederlandse feestdagen in SQL: een datumdimensie die ook op 5 mei 2016 klopt',
+    date: '3 aug 2026',
+    slug: 'nederlandse-feestdagen-in-sql',
+    variant: 8,
+  },
+  {
     tag: 'Project',
     title: 'Van event-log naar businesscase: stuurinformatie voor het bezwaarproces',
     date: '27 jul 2026',
