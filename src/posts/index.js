@@ -5,8 +5,10 @@ import Rag, { meta as ragMeta } from './rag-voor-beleidsstukken.mdx'
 import Scrum, { meta as scrumMeta } from './scrum-in-de-publieke-sector.mdx'
 import Requirements, { meta as requirementsMeta } from './requirements-engineering-voor-dataproducten.mdx'
 import Feestdagen, { meta as feestdagenMeta } from './nederlandse-feestdagen-in-sql.mdx'
+import Ci, { meta as ciMeta } from './ci-voor-een-dbt-project.mdx'
 
 export const posts = [
+  { ...ciMeta, Component: Ci },
   { ...feestdagenMeta, Component: Feestdagen },
   { ...bezwaarprocesMeta, Component: Bezwaarproces },
   { ...warehouseMeta, Component: Warehouse },
