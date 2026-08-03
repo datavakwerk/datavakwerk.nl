@@ -302,6 +302,26 @@ h3 {
   }
 }
 
+/* Logo + knop passen anders niet naast elkaar op smalle telefoons. */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 20px;
+  }
+  .nav-inner {
+    gap: 16px;
+  }
+  .nav-actions .btn {
+    padding: 8px 13px;
+    font-size: 13.5px;
+  }
+}
+
+@media (max-width: 350px) {
+  .nav-logo-word {
+    display: none;
+  }
+}
+
 /* ============ Hero ============ */
 .hero {
   position: relative;
@@ -844,11 +864,16 @@ h3 {
   }
 }
 
-/* sdk mini-visual: language chips orbit in */
+/* sdk mini-visual: language chips orbit in. Bewust flex met wrap in plaats
+   van een grid met vaste kolommen: de kaarten zijn te smal voor drie chips
+   naast elkaar ("knelpuntenanalyse" is lang) en vaste tracks knippen dan de
+   buitenste chips af. */
 .mini-sdk {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
+  padding: 0 20px;
 }
 
 .sdk-chip {
@@ -989,6 +1014,13 @@ h3 {
   grid-template-columns: 1fr 1.1fr;
   gap: 64px;
   align-items: center;
+}
+
+/* Zonder dit weigeren de kolommen smaller te worden dan de breedste codeliin
+   (white-space: pre) en schuift de hele sectie buiten beeld op mobiel; met
+   min-width: 0 neemt de overflow-x van .code-body het over. */
+.ai-grid > * {
+  min-width: 0;
 }
 
 .ai-features {
@@ -1376,7 +1408,8 @@ h3 {
 
 .case-results {
   display: flex;
-  gap: 28px;
+  flex-wrap: wrap;
+  gap: 18px 28px;
   margin-top: 30px;
   padding-top: 24px;
   border-top: 1px solid var(--gray-200);
@@ -1404,6 +1437,12 @@ h3 {
   }
   .case-tab {
     min-width: 190px;
+  }
+}
+
+@media (max-width: 640px) {
+  .case-detail {
+    padding: 26px 22px;
   }
 }
 
@@ -1497,6 +1536,12 @@ h3 {
   grid-template-columns: 1.1fr 1fr;
   gap: 56px;
   align-items: center;
+}
+
+/* Zelfde verhaal als bij .ai-grid: zonder min-width: 0 bepaalt de breedte van
+   de pipe-visual de kolom en loopt de tekst op smalle schermen buiten beeld. */
+.integration-inner > * {
+  min-width: 0;
 }
 
 .integration .eyebrow {
@@ -1610,6 +1655,19 @@ h3 {
 @media (max-width: 900px) {
   .integration-inner {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Drie nodes naast elkaar passen niet op een telefoon; onder elkaar wel. De
+   beams zijn horizontaal getekend, dus die vervallen — de gefaseerde nodePulse
+   houdt het stroom-idee overeind. */
+@media (max-width: 640px) {
+  .pipe-visual {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .pipe-beam {
+    display: none;
   }
 }
 
@@ -1879,6 +1937,14 @@ h3 {
   }
 }
 
+/* Twee kolommen passen niet meer zodra "managementinformatie" niet meer in een
+   halve breedte past (op 375px scheelt het een paar pixels). */
+@media (max-width: 380px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ============ Blog post page ============ */
 .blog-post {
   padding: 150px 0 90px;
@@ -1998,8 +2064,9 @@ h3 {
 }
 
 /* Losse code zonder taal is bij mij consoleoutput (tabellen van DuckDB);
-   die mag smaller zodat de kaders niet afbreken. */
-.blog-post-content pre code:not([class*="language-"]) {
+   die mag smaller zodat de kaders niet afbreken. Shiki markeert blokken mét
+   taal met de class "shiki" en laat de rest ongemoeid. */
+.blog-post-content pre:not(.shiki) code {
   font-size: 12.5px;
   color: var(--gray-500);
 }

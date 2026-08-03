@@ -27,7 +27,7 @@ export default function Navbar() {
       <div className="container nav-inner">
         <a href="/" className="nav-logo">
           <Logo />
-          Datavakwerk
+          <span className="nav-logo-word">Datavakwerk</span>
         </a>
         <nav className="nav-links">
           {LINKS.map((l) => (
